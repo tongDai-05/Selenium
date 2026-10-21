@@ -29,10 +29,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Năm test độc lập: mỗi test mở một phiên Chrome mới và tự chuẩn bị dữ liệu.
- * Chạy mặc định có cửa sổ Chrome; thêm -Dheadless=true để chạy ẩn.
- */
 class SauceDemoTest {
     private static final String BASE_URL = "https://www.saucedemo.com/";
     private static final String USERNAME = "standard_user";
@@ -63,7 +59,6 @@ class SauceDemoTest {
 
     @BeforeEach
     void setUp(TestInfo testInfo) throws IOException {
-        // Xóa đúng ảnh cũ của test sắp chạy để tránh nhầm với kết quả lần trước.
         String testMethod = testInfo.getTestMethod().orElseThrow().getName();
         Files.deleteIfExists(Path.of("evidence", EVIDENCE_FILES.get(testMethod)));
 
@@ -79,7 +74,6 @@ class SauceDemoTest {
         preferences.put("profile.password_manager_leak_detection", false);
         options.setExperimentalOption("prefs", preferences);
 
-        // Selenium Manager tự tìm hoặc tải ChromeDriver khi cần.
         driver = new ChromeDriver(options);
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -136,7 +130,6 @@ class SauceDemoTest {
     @Test
     @DisplayName("TC04 - Xóa sản phẩm khỏi giỏ hàng")
     void tc04_removeProductFromCart() throws IOException {
-        // Tự thêm sản phẩm; không phụ thuộc kết quả của TC03.
         loginSuccessfully();
         addBackpack();
         openCart();
@@ -196,8 +189,6 @@ class SauceDemoTest {
     }
 
     private void saveEvidence(String fileName) throws IOException {
-        // Ảnh được chụp trực tiếp từ trình duyệt sau khi các assertion đã đạt.
-        // Chờ font và ảnh tải xong; chỉ đọc trạng thái, không thay đổi giao diện.
         wait.until(browser -> Boolean.TRUE.equals(((JavascriptExecutor) browser).executeScript(
                 "return document.fonts.status === 'loaded' && "
                         + "Array.from(document.images).every(image => image.complete);")));
