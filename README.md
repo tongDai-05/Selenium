@@ -11,7 +11,6 @@
 - Tìm hiểu Selenium qua video hướng dẫn hoặc tài liệu phù hợp.
 - Xây dựng tối thiểu 05 test case kiểm thử tự động cho một website.
 - Lưu mã nguồn và viết báo cáo trong README của repository GitHub.
-- Nộp link repository tại nơi nộp bài và trên GSheet dùng chung với bài Postman.
 
 Tài liệu đã tham khảo: [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/getting_started/) và [JUnit Jupiter](https://docs.junit.org/5.14.4/overview.html).
 
@@ -64,5 +63,4 @@ mvn test
 
 ![TC05: Trang đăng nhập sau khi đăng xuất](evidence/05-logout.png)
 
-**Link nộp bài:** [https://github.com/tongDai-05/Selenium](https://github.com/tongDai-05/Selenium)
 
