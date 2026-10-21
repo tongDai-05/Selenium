@@ -1,0 +1,9 @@
+# Maven build output, local downloads, IDE settings
+/target/
+/.cache/
+/.idea/
+/.vscode/
+*.iml
+*.log
+.DS_Store
+Thumbs.db
